@@ -1,0 +1,35 @@
+django-assume
+Copyright Full Factor Technologies Inc.
+
+django-assume is a reusable Django app that allows assuming user accounts using
+a custom button in admin on the change user form.
+
+Installation:
+
+1.  Add assume to settings.INSTALLED_APPS
+
+2.  Add one of the custom authentication backends in assume.backends to
+    settings.AUTHENTICATION_BACKENDS, e.g.:
+
+        AUTHENTICATION_BACKENDS = (
+            'assume.backends.AssumableModelBackend',
+            'django.contrib.auth.backends.ModelBackend',
+        )
+
+3.  Include assume.admin_urls in the project's urls:
+
+        urlpatterns += patterns('',
+            (r'^admin/', include('assume.admin_urls')),
+        )
+
+    or add a specific pattern to specify the next url to be redirected to
+    after a user has been assumed:
+
+        urlpatterns += patterns('',
+            url(
+                r'^admin/auth/user/(\d+)/assume/$',
+                'assume.views.assume_user',
+                {'next_url': '/demo'},
+                name = 'assume_user'
+            ),
+        )
