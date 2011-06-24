@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import authenticate, SESSION_KEY, BACKEND_SESSION_KEY
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 
 @staff_member_required
@@ -16,7 +17,7 @@ def assume_user(request, id, next_url='/'):
 
     # Don't allow staff members cannot be assumed
     if user.is_staff:
-        request.user.message_set.create(message="Sorry, staff members cannot be assumed.")
+        messages.error(request, "Sorry, staff members cannot be assumed.")
         return HttpResponseRedirect(reverse('admin:auth_user_change', args=(user.id,)))
 
     # Call authenticate without a password (this only works with our custom backend)
