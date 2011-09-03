@@ -51,3 +51,8 @@ Options
                 'next_url': '/demo/'
             }, name='assume_user'),
         )
+
+*   By default, staff members cannot be assumed. This can be changed using
+    the following setting:
+
+        CAN_ASSUME_STAFF = True

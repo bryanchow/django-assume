@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 
 
+CAN_ASSUME_STAFF = getattr(settings, 'CAN_ASSUME_STAFF', False)
 URL_AFTER_ASSUME = getattr(settings, 'URL_AFTER_ASSUME', '/')
 
 
@@ -19,8 +20,8 @@ def assume_user(request, id, next_url=URL_AFTER_ASSUME):
 
     user = get_object_or_404(User, pk=id)
 
-    # Don't allow staff members cannot be assumed
-    if user.is_staff:
+    # Check whether staff members can be assumed
+    if user.is_staff and not CAN_ASSUME_STAFF:
         messages.error(request, "Sorry, staff members cannot be assumed.")
         return HttpResponseRedirect(reverse('admin:auth_user_change', args=(user.id,)))
 
