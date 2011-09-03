@@ -33,3 +33,21 @@ Installation
 
 You should now see an "Assume" button near the top of each Change User form
 in admin.
+
+
+Options
+-------
+
+*   To specify the next URL to be redirected to after a user has been
+    assumed, use the following setting:
+
+        URL_AFTER_ASSUME = '/next/url/'
+
+    Alternately, specify a custom URL pattern and pass a `next_url`
+    parameter to the `assume_user` view:
+
+        urlpatterns += patterns('',
+            url(r'^admin/auth/user/(\d+)/assume/$', 'assume.views.assume_user', {
+                'next_url': '/demo/'
+            }, name='assume_user'),
+        )

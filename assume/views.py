@@ -1,14 +1,18 @@
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
+from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import authenticate, SESSION_KEY, BACKEND_SESSION_KEY
 from django.contrib.auth.models import User
 from django.contrib import messages
 
 
+URL_AFTER_ASSUME = getattr(settings, 'URL_AFTER_ASSUME', '/')
+
+
 @staff_member_required
-def assume_user(request, id, next_url='/'):
+def assume_user(request, id, next_url=URL_AFTER_ASSUME):
     """
     Custom admin view that logs into a specified user account.
     """
