@@ -11,7 +11,7 @@ setup(
     version = version,
     description = "Django app that allows administrators to log in to user " \
                   "accounts without having to provide a password",
-    long_description = read('README.md'),
+    long_description = read('README.rst'),
     classifiers = [],
     keywords = "",
     author = "Bryan Chow",

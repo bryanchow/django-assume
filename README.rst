@@ -14,18 +14,18 @@ Suggestions and contributions are welcome. USE THIS APP AT YOUR OWN RISK!
 Installation
 ------------
 
-1.  Add `assume` to `settings.INSTALLED_APPS` and make sure that the
-    `app_directories` template loader is enabled in your project.
+1.  Add ``assume`` to ``settings.INSTALLED_APPS`` and make sure that the
+    ``app_directories`` template loader is enabled in your project.
 
-2.  Add one of the custom authentication backends in `assume.backends` to
-    `settings.AUTHENTICATION_BACKENDS`. For example:
+2.  Add one of the custom authentication backends in ``assume.backends`` to
+    ``settings.AUTHENTICATION_BACKENDS``. For example::
 
         AUTHENTICATION_BACKENDS = (
             'assume.backends.AssumableModelBackend',
             'django.contrib.auth.backends.ModelBackend',
         )
 
-3.  Include `assume.admin_urls` in your project's URL patterns:
+3.  Include ``assume.admin_urls`` in your project's URL patterns::
 
         urlpatterns += patterns('',
             (r'^admin/', include('assume.admin_urls')),
@@ -39,12 +39,12 @@ Options
 -------
 
 *   To specify the next URL to be redirected to after a user has been
-    assumed, use the following setting:
+    assumed, use the following setting::
 
         URL_AFTER_ASSUME = '/next/url/'
 
-    Alternately, specify a custom URL pattern and pass a `next_url`
-    parameter to the `assume_user` view:
+    Alternately, specify a custom URL pattern and pass a ``next_url``
+    parameter to the ``assume_user`` view::
 
         urlpatterns += patterns('',
             url(r'^admin/auth/user/(\d+)/assume/$', 'assume.views.assume_user', {
@@ -53,6 +53,6 @@ Options
         )
 
 *   By default, staff members cannot be assumed. This can be changed using
-    the following setting:
+    the following setting::
 
         CAN_ASSUME_STAFF = True
