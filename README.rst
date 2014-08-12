@@ -6,7 +6,7 @@ log in to other user accounts without having to provide a password. This can
 be useful for investigating and troubleshooting problems related to specific
 user accounts.
 
-This app is intended for use with Django 1.3.
+This app is intended for use with Django 1.3 and later.
 
 Suggestions and contributions are welcome. USE THIS APP AT YOUR OWN RISK!
 
@@ -15,7 +15,12 @@ Installation
 ------------
 
 1.  Add ``assume`` to ``settings.INSTALLED_APPS`` and make sure that the
-    ``app_directories`` template loader is enabled in your project.
+    ``app_directories`` template loader is enabled in your project::
+
+        INSTALLED_APPS = (
+            # ...
+            'assume',
+        )
 
 2.  Add one of the custom authentication backends in ``assume.backends`` to
     ``settings.AUTHENTICATION_BACKENDS``. For example::
