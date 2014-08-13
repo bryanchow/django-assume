@@ -14,7 +14,9 @@ Suggestions and contributions are welcome. USE THIS APP AT YOUR OWN RISK!
 Installation
 ------------
 
-1.  Add ``assume`` to ``settings.INSTALLED_APPS`` and make sure that the
+1. ``pip install django-assume``
+
+2.  Add ``assume`` to ``settings.INSTALLED_APPS`` and make sure that the
     ``app_directories`` template loader is enabled in your project::
 
         INSTALLED_APPS = (
@@ -22,7 +24,7 @@ Installation
             'assume',
         )
 
-2.  Add one of the custom authentication backends in ``assume.backends`` to
+3.  Add one of the custom authentication backends in ``assume.backends`` to
     ``settings.AUTHENTICATION_BACKENDS``. For example::
 
         AUTHENTICATION_BACKENDS = (
@@ -30,14 +32,16 @@ Installation
             'django.contrib.auth.backends.ModelBackend',
         )
 
-3.  Include ``assume.admin_urls`` in your project's URL patterns::
+4.  Include ``assume.admin_urls`` in your project's URL patterns::
 
         urlpatterns += patterns('',
             (r'^admin/', include('assume.admin_urls')),
         )
 
 You should now see an "Assume" button near the top of each Change User form
-in admin.
+in admin; clicking the button will log you in as that user.
+
+.. image:: https://github.com/bryanchow/django-assume/blob/master/screenshot.png
 
 
 Options
